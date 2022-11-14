@@ -1,14 +1,19 @@
-import React from 'react'
-import { ActivityIndicator, FlatList, Image, Text, View } from 'react-native'
+import React, { useRef, useState } from 'react'
+import { ActivityIndicator, Animated, FlatList, Image, Text, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { FadeInImage } from '../components/FadeInImage'
 import PokemonCard from '../components/PokemonCard'
 import { usePokemonPaginated } from '../hooks/usePokemonPaginated'
 import { styles } from '../theme/appTheme'
+import { useEffect } from 'react';
+import { useAnimation } from '../hooks/useAnimation';
+import Splash from '../components/Splash'
 
 const HomeScreen = () => {
   const {top} = useSafeAreaInsets()
   const {isLoading,simplePokemonList,loadPokemons} = usePokemonPaginated()
+
+
   return (
     <>
       <Image 

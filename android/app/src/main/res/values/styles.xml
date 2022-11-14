@@ -3,7 +3,11 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="android:editTextBackground">@drawable/rn_edit_text_material</item>
+         <!-- you have to add this in order to get rid of white and logo screen -->
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowBackground">#1631DF</item>
     </style>
 
 </resources>
+
+<!-- <item name="android:editTextBackground">@drawable/rn_edit_text_material</item> -->
