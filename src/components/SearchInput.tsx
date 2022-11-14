@@ -43,7 +43,7 @@ export default SearchInput
 
 const styles = StyleSheet.create({
     container:{
-        margin:10
+        marginVertical:10
     },
     textBackground:{
         backgroundColor:'#F3F1F3',

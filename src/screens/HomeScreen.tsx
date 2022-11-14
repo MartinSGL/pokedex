@@ -1,23 +1,20 @@
-import React, { useRef, useState } from 'react'
-import { ActivityIndicator, Animated, FlatList, Image, Text, View } from 'react-native'
+import React, { useContext, useEffect, useState } from 'react'
+import { ActivityIndicator, FlatList, Image, Switch, Text, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { FadeInImage } from '../components/FadeInImage'
 import PokemonCard from '../components/PokemonCard'
+import { ThemeContext } from '../contexts/ThemeContext'
 import { usePokemonPaginated } from '../hooks/usePokemonPaginated'
 import { styles } from '../theme/appTheme'
-import { useEffect } from 'react';
-import { useAnimation } from '../hooks/useAnimation';
-import Splash from '../components/Splash'
 
 const HomeScreen = () => {
   const {top} = useSafeAreaInsets()
   const {isLoading,simplePokemonList,loadPokemons} = usePokemonPaginated()
-
+  const {theme,setDarkTheme,setLightTheme} = useContext(ThemeContext)
 
   return (
-    <>
+    <View style={{backgroundColor:theme.colors.background}}>
       <Image 
-        source={require('../assets/pokebola.png')}
+        source={theme.dark ? require('../assets/pokebola-blanca.png'):require('../assets/pokebola.png')}
         style={styles.porkebolaBG}
       />
       <View style={{
@@ -27,16 +24,39 @@ const HomeScreen = () => {
           data = {simplePokemonList}
           showsVerticalScrollIndicator={false}
           ListHeaderComponent={(
-            <Text style={{
-              ...styles.title,
+            <View style={{
+              flexDirection:'row',
               ...styles.globalMargin,
               top:top +20, 
               marginBottom:top+20,
-              paddingBottom:10
+              paddingBottom:10,
+              alignItems:'center',
+              justifyContent:'space-between'
             }}>
+              <Text style={{
+                  ...styles.title,
+                  color:theme.colors.text
+                }}>
               Pokedex
-            </Text>
+              </Text>
+              <View style={{flexDirection:'row', alignItems:'center'}}>
+                <Text style={{color:theme.colors.text}}>Light/Dark</Text>
+                <Switch style={{marginLeft:10}} 
+                  value={theme.dark} 
+                  onChange={()=>{
+                    if(theme.dark===false){
+                      setDarkTheme()
+                    }else{
+                      setLightTheme()
+                    }
+                  }}
+                />
+              </View>
+              
+            </View>
+               
           )}
+          stickyHeaderIndices={[0]}
           numColumns={ 2 }
           keyExtractor = {(pokemon) => (pokemon.id)}
           renderItem = {({item})=> <PokemonCard pokemon={item}/>}
@@ -53,7 +73,7 @@ const HomeScreen = () => {
         />
       </View>
       
-    </>
+    </View>
   )
 }
 

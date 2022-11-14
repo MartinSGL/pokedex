@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { ActivityIndicator, Dimensions, FlatList, Platform, StyleSheet, Text, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Loading from '../components/Loading';
@@ -8,6 +8,7 @@ import { usePokemonSearch } from '../hooks/usePokemonSearch';
 import { styles } from '../theme/appTheme'
 import { SimplePokemon } from '../interfaces/porkemonInterfaces';
 import { useEffect } from 'react';
+import { ThemeContext } from '../contexts/ThemeContext';
 
 const widthWindow = Dimensions.get('window').width
 
@@ -16,6 +17,7 @@ const SearchScreen = () => {
     const {isFetching,simplePokemonList} =  usePokemonSearch()
     const [term, setTerm] =  useState('')
     const [pokemonFiltered, setPokemonFiltered] =  useState<SimplePokemon[]>([])
+    const { theme } = useContext(ThemeContext)
 
     useEffect(()=>{
 
@@ -42,15 +44,19 @@ const SearchScreen = () => {
     : (
         <View style={{
             flex:1,
-            marginHorizontal:20,
+            paddingHorizontal:20,
+            backgroundColor:theme.colors.background,
+            justifyContent:'center'
         }}>
+
             <SearchInput
                 onDebounce={setTerm}
                 style={{
                     position:'absolute',
                     zIndex:999,
                     width:widthWindow - 40,
-                    top:(Platform.OS==='ios') ? top : top +30
+                    top:(Platform.OS==='ios') ? top : top +30,
+                    left:20
                 }}
             />
 
@@ -62,7 +68,8 @@ const SearchScreen = () => {
                     ...styles.title,
                     ...styles.globalMargin,
                     paddingBottom:10,
-                    marginTop:(Platform.OS==='ios') ? top + 70 : top + 90
+                    marginTop:(Platform.OS==='ios') ? top + 70 : top + 90,
+                    color:theme.colors.text
                     }}>
                     {term}
                     </Text>

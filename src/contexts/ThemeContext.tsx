@@ -32,7 +32,7 @@ export const darkTheme: ThemeState = {
         card: 'black',
         text: 'white',
         border: 'orange',
-        notification: 'teal'
+        notification: 'white'
     }
 }
 

@@ -24,6 +24,7 @@ const PokemonCard = ({pokemon}:Props) => {
     useEffect(() => {
         isMounted && getColor(pokemon.picture)
 
+        //when component is unmounted you don't have to look up for its color
         return () =>{
             isMounted.current = false
         }
