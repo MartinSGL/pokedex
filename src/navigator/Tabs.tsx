@@ -21,7 +21,7 @@ const Tabs = () => {
 
     >
       {/* use this to control de color of battery,hour etc ios */}
-      <StatusBar barStyle={theme.dark ? "light-content" : "dark-content" }/> 
+      {Platform.OS==='ios' && <StatusBar barStyle={theme.dark ? "light-content" : "dark-content" }/> }
       <Tab.Navigator
           screenOptions={{
               headerShown:false,

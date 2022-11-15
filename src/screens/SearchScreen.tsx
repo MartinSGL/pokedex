@@ -9,6 +9,7 @@ import { styles } from '../theme/appTheme'
 import { SimplePokemon } from '../interfaces/porkemonInterfaces';
 import { useEffect } from 'react';
 import { ThemeContext } from '../contexts/ThemeContext';
+import { useTheme } from '@react-navigation/native';
 
 const widthWindow = Dimensions.get('window').width
 
@@ -17,7 +18,8 @@ const SearchScreen = () => {
     const {isFetching,simplePokemonList} =  usePokemonSearch()
     const [term, setTerm] =  useState('')
     const [pokemonFiltered, setPokemonFiltered] =  useState<SimplePokemon[]>([])
-    const { theme } = useContext(ThemeContext)
+    // const { theme } = useContext(ThemeContext)
+    const theme = useTheme()
 
     useEffect(()=>{
 
