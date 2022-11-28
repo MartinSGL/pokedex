@@ -1,7 +1,7 @@
 # Pokedex App
 
 
-TThis is a mobile app built over the course of Udemy React Native - Fernando Herrera. This works as a guide on how to consume an API with different requests, and how to use it efficiently in order that when a component it's unmounted you don't have to look for its information (see PokemonCard component), It was also a debouncer developed so when you are searching for a pokemon you don't have to make request every time a key is typed.
+This is a mobile app built over the course of Udemy React Native - Fernando Herrera. This works as a guide on how to consume an API with different requests, and how to use it efficiently in order that when a component it's unmounted you don't have to look for its information (see PokemonCard component), It was also a debouncer developed so when you are searching for a pokemon you don't have to make request every time a key is typed.
 \
 \
 ![****](/screen-app.png)
